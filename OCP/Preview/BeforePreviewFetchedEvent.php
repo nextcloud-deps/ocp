@@ -1,8 +1,11 @@
 <?php
+
+declare(strict_types=1);
+
 /**
- * @copyright Copyright (c) 2018 Arthur Schiwon <blizzz@arthur-schiwon.de>
+ * @copyright Copyright (c) 2022 Julius Härtl <jus@bitgrid.net>
  *
- * @author Arthur Schiwon <blizzz@arthur-schiwon.de>
+ * @author Julius Härtl <jus@bitgrid.net>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -18,22 +21,31 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
  */
-namespace OCP\Log;
+
+
+namespace OCP\Preview;
+
+use OCP\Files\Node;
 
 /**
- * Interface IWriter
- *
- * @since 14.0.0
+ * @since 25.0.1
  */
-interface IWriter {
+class BeforePreviewFetchedEvent extends \OCP\EventDispatcher\Event {
+	private Node $node;
+
 	/**
-	 * @since 14.0.0
-	 *
-	 * @param string $app
-	 * @param string|array $message
-	 * @param int $level
+	 * @since 25.0.1
 	 */
-	public function write(string $app, $message, int $level);
+	public function __construct(Node $node) {
+		parent::__construct();
+		$this->node = $node;
+	}
+
+	/**
+	 * @since 25.0.1
+	 */
+	public function getNode(): Node {
+		return $this->node;
+	}
 }

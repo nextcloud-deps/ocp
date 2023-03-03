@@ -1,6 +1,9 @@
 <?php
+
+declare(strict_types=1);
+
 /**
- * @copyright Copyright (c) 2018 Arthur Schiwon <blizzz@arthur-schiwon.de>
+ * @copyright Copyright (c) 2022 Arthur Schiwon <blizzz@arthur-schiwon.de>
  *
  * @author Arthur Schiwon <blizzz@arthur-schiwon.de>
  *
@@ -13,27 +16,29 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
-namespace OCP\Log;
+
+namespace OCP\Support\Subscription;
+
+use OCP\HintException;
 
 /**
- * Interface IWriter
- *
- * @since 14.0.0
+ * @since 26.0.0
  */
-interface IWriter {
+interface IAssertion {
 	/**
-	 * @since 14.0.0
+	 * This method throws a localized exception when user limits are exceeded,
+	 * if applicable. Notifications are also created in that case. It is a
+	 * shorthand for a check against IRegistry::delegateIsHardUserLimitReached().
 	 *
-	 * @param string $app
-	 * @param string|array $message
-	 * @param int $level
+	 * @throws HintException
+	 * @since 26.0.0
 	 */
-	public function write(string $app, $message, int $level);
+	public function createUserIsLegit(): void;
 }

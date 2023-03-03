@@ -1,8 +1,11 @@
 <?php
+
+declare(strict_types=1);
+
 /**
- * @copyright Copyright (c) 2018 Arthur Schiwon <blizzz@arthur-schiwon.de>
+ * @copyright Copyright (c) 2022 Côme Chilliet <come.chilliet@nextcloud.com>
  *
- * @author Arthur Schiwon <blizzz@arthur-schiwon.de>
+ * @author Côme Chilliet <come.chilliet@nextcloud.com>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -20,20 +23,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-namespace OCP\Log;
+
+namespace OCP\User\Backend;
 
 /**
- * Interface IWriter
- *
- * @since 14.0.0
+ * @since 24.0.7
  */
-interface IWriter {
+interface ICountMappedUsersBackend {
 	/**
-	 * @since 14.0.0
+	 * @since 24.0.7
 	 *
-	 * @param string $app
-	 * @param string|array $message
-	 * @param int $level
+	 * @return int The number of users already mapped to a Nextcloud account
 	 */
-	public function write(string $app, $message, int $level);
+	public function countMappedUsers(): int;
 }
