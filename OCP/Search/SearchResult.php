@@ -50,7 +50,7 @@ final class SearchResult implements JsonSerializable {
 	 * @param string $name the translated name of the result section or group, e.g. "Mail"
 	 * @param bool $isPaginated
 	 * @param SearchResultEntry[] $entries
-	 * @param ?int|?string $cursor
+	 * @param null $cursor
 	 *
 	 * @since 20.0.0
 	 */

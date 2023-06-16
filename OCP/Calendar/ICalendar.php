@@ -40,7 +40,6 @@ interface ICalendar {
 	public function getKey();
 
 	/**
-	 * In comparison to getKey() this function returns a unique uri within the scope of the principal
 	 * @since 24.0.0
 	 */
 	public function getUri(): string;
