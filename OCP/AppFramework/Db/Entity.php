@@ -113,9 +113,6 @@ abstract class Entity {
 				$type = $this->_fieldTypes[$name];
 				if ($type === 'blob') {
 					// (B)LOB is treated as string when we read from the DB
-					if (is_resource($args[0])) {
-						$args[0] = stream_get_contents($args[0]);
-					}
 					$type = 'string';
 				}
 

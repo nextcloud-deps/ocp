@@ -85,11 +85,10 @@ interface IJobList {
 	/**
 	 * get the next job in the list
 	 *
-	 * @param bool $onlyTimeSensitive
 	 * @return \OCP\BackgroundJob\IJob|null
-	 * @since 7.0.0 - In 24.0.0 parameter $onlyTimeSensitive got added
+	 * @since 7.0.0
 	 */
-	public function getNext(bool $onlyTimeSensitive = false): ?IJob;
+	public function getNext();
 
 	/**
 	 * @param int $id
