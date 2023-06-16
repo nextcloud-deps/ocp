@@ -163,9 +163,9 @@ abstract class Entity {
 	 * @since 7.0.0
 	 */
 	public function __call(string $methodName, array $args) {
-		if (str_starts_with($methodName, 'set')) {
+		if (strpos($methodName, 'set') === 0) {
 			$this->setter(lcfirst(substr($methodName, 3)), $args);
-		} elseif (str_starts_with($methodName, 'get')) {
+		} elseif (strpos($methodName, 'get') === 0) {
 			return $this->getter(lcfirst(substr($methodName, 3)));
 		} elseif ($this->isGetterForBoolProperty($methodName)) {
 			return $this->getter(lcfirst(substr($methodName, 2)));
@@ -181,9 +181,9 @@ abstract class Entity {
 	 * @since 18.0.0
 	 */
 	protected function isGetterForBoolProperty(string $methodName): bool {
-		if (str_starts_with($methodName, 'is')) {
+		if (strpos($methodName, 'is') === 0) {
 			$fieldName = lcfirst(substr($methodName, 2));
-			return isset($this->_fieldTypes[$fieldName]) && str_starts_with($this->_fieldTypes[$fieldName], 'bool');
+			return isset($this->_fieldTypes[$fieldName]) && strpos($this->_fieldTypes[$fieldName], 'bool') === 0;
 		}
 		return false;
 	}

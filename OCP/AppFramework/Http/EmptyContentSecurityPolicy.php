@@ -37,6 +37,8 @@ namespace OCP\AppFramework\Http;
  * @since 9.0.0
  */
 class EmptyContentSecurityPolicy {
+	/** @var bool Whether inline JS snippets are allowed */
+	protected $inlineScriptAllowed = null;
 	/** @var string Whether JS nonces should be used */
 	protected $useJsNonce = null;
 	/** @var bool Whether strict-dynamic should be used */
@@ -80,6 +82,18 @@ class EmptyContentSecurityPolicy {
 
 	/** @var array Locations to report violations to */
 	protected $reportTo = null;
+
+	/**
+	 * Whether inline JavaScript snippets are allowed or forbidden
+	 * @param bool $state
+	 * @return $this
+	 * @since 8.1.0
+	 * @deprecated 10.0 CSP tokens are now used
+	 */
+	public function allowInlineScript($state = false) {
+		$this->inlineScriptAllowed = $state;
+		return $this;
+	}
 
 	/**
 	 * @param bool $state
@@ -433,7 +447,7 @@ class EmptyContentSecurityPolicy {
 		$policy .= "base-uri 'none';";
 		$policy .= "manifest-src 'self';";
 
-		if (!empty($this->allowedScriptDomains) || $this->evalScriptAllowed) {
+		if (!empty($this->allowedScriptDomains) || $this->inlineScriptAllowed || $this->evalScriptAllowed) {
 			$policy .= 'script-src ';
 			if (is_string($this->useJsNonce)) {
 				if ($this->strictDynamicAllowed) {
@@ -449,6 +463,9 @@ class EmptyContentSecurityPolicy {
 			}
 			if (is_array($this->allowedScriptDomains)) {
 				$policy .= implode(' ', $this->allowedScriptDomains);
+			}
+			if ($this->inlineScriptAllowed) {
+				$policy .= ' \'unsafe-inline\'';
 			}
 			if ($this->evalScriptAllowed) {
 				$policy .= ' \'unsafe-eval\'';

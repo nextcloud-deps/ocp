@@ -182,7 +182,7 @@ class Util {
 		// need separate handling
 		if ($application !== 'core'
 			&& $file !== null
-			&& !str_contains($file, 'l10n')) {
+			&& strpos($file, 'l10n') === false) {
 			self::addTranslations($application);
 		}
 
@@ -275,6 +275,21 @@ class Util {
 		return $urlGenerator->getAbsoluteURL(
 			$remoteBase . (($service[strlen($service) - 1] != '/') ? '/' : '')
 		);
+	}
+
+	/**
+	 * Creates an absolute url for public use
+	 * @param string $service id
+	 * @return string the url
+	 * @since 4.5.0
+	 * @deprecated 15.0.0 - use OCP\IURLGenerator
+	 */
+	public static function linkToPublic($service) {
+		$urlGenerator = \OC::$server->getURLGenerator();
+		if ($service === 'files') {
+			return $urlGenerator->getAbsoluteURL('/s');
+		}
+		return $urlGenerator->getAbsoluteURL($urlGenerator->linkTo('', 'public.php').'?service='.$service);
 	}
 
 	/**
@@ -592,6 +607,11 @@ class Util {
 		}
 		$ini = \OCP\Server::get(IniGetWrapper::class);
 		$disabled = explode(',', $ini->get('disable_functions') ?: '');
+		$disabled = array_map('trim', $disabled);
+		if (in_array($functionName, $disabled)) {
+			return false;
+		}
+		$disabled = explode(',', $ini->get('suhosin.executor.func.blacklist') ?: '');
 		$disabled = array_map('trim', $disabled);
 		if (in_array($functionName, $disabled)) {
 			return false;
