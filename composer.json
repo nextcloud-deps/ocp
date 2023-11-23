@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": "~8.0 || ~8.1 || ~8.2",
+        "php": "~8.0 || ~8.1 || ~8.2 || ~8.3",
         "psr/clock": "^1.0",
         "psr/container": "^2.0.2",
         "psr/event-dispatcher": "^1.0",
@@ -18,7 +18,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "29.0.0-dev"
+            "dev-stable28": "28.0.0-dev"
         }
     },
     "config": {
