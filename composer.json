@@ -18,7 +18,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "30.0.0-dev"
+            "dev-stable30": "30.0.0-dev"
         }
     },
     "config": {
