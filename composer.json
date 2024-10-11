@@ -14,7 +14,7 @@
         "psr/clock": "^1.0",
         "psr/container": "^2.0.2",
         "psr/event-dispatcher": "^1.0",
-        "psr/log": "^1.1.4"
+        "psr/log": "^2.0.0"
     },
     "extra": {
         "branch-alias": {
