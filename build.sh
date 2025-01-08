@@ -58,6 +58,12 @@ update_sources() {
     rm -rf OCP
     cp -r server/lib/public OCP
     git add OCP
+
+    if [ -d server/lib/unstable ]; then
+        rm -rf NCU
+        cp -r server/lib/unstable NCU
+        git add NCU
+    fi
 }
 
 # Check current branch, fallback to default
