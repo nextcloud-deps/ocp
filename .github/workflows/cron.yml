@@ -20,11 +20,12 @@ jobs:
     name: Update ${{ matrix.branches }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
+          persist-credentials: true
           ref: ${{ matrix.branches }}
           submodules: true
-      
+
       - name: Get latest build script
         run: |
           wget https://raw.githubusercontent.com/nextcloud-deps/ocp/master/build.sh -O build.sh
