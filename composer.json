@@ -18,6 +18,7 @@
         "psr/clock": "^1.0",
         "psr/container": "^2.0.2",
         "psr/event-dispatcher": "^1.0",
+        "psr/http-client": "^1.0.3",
         "psr/log": "^3.0.2"
     },
     "extra": {
