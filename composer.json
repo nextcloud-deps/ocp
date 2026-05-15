@@ -23,7 +23,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-stable34": "34.0.0-dev"
+            "dev-master": "34.0.0-dev"
         }
     },
     "config": {
