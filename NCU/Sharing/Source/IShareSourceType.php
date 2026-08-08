@@ -9,10 +9,9 @@ declare(strict_types=1);
 
 namespace NCU\Sharing\Source;
 
-use NCU\Sharing\Icon\ShareIconSVG;
-use NCU\Sharing\Icon\ShareIconURL;
 use OCP\AppFramework\Attribute\Implementable;
 use OCP\Interaction\InteractionResource;
+use OCP\IUser;
 use OCP\L10N\IFactory;
 
 /**
@@ -40,21 +39,20 @@ interface IShareSourceType {
 
 	/**
 	 * @param non-empty-string $source
-	 * @return ?non-empty-string
 	 * @experimental 35.0.0
 	 */
-	public function getSourceDisplayName(string $source): ?string;
+	public function getSourceMetadata(string $source): ?IShareSourceMetadata;
+
+	/**
+	 * @param non-empty-string[] $sources
+	 * @return array<non-empty-string, IShareSourceMetadata>
+	 * @experimental 35.0.0
+	 */
+	public function getSourcesMetadata(array $sources): array;
 
 	/**
 	 * @param non-empty-string $source
 	 * @experimental 35.0.0
 	 */
-	public function getSourceIcon(string $source): null|ShareIconSVG|ShareIconURL;
-
-	/**
-	 * @param non-empty-string $userId
-	 * @param non-empty-string $source
-	 * @experimental 35.0.0
-	 */
-	public function getSourceInteractionResource(string $userId, string $source): InteractionResource;
+	public function getSourceInteractionResource(IUser $user, string $source): InteractionResource;
 }
