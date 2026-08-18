@@ -22,7 +22,8 @@
         "psr/log": "^3.0.2",
         "symfony/polyfill-intl-normalizer": "^1.38",
         "symfony/polyfill-php84": "^1.38",
-        "symfony/polyfill-php85": "^1.41"
+        "symfony/polyfill-php85": "^1.41",
+        "symfony/polyfill-php86": "^1.41"
     },
     "extra": {
         "branch-alias": {
