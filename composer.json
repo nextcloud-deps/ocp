@@ -19,7 +19,11 @@
         "psr/container": "^2.0.2",
         "psr/event-dispatcher": "^1.0",
         "psr/http-client": "^1.0.3",
-        "psr/log": "^3.0.2"
+        "psr/log": "^3.0.2",
+        "symfony/polyfill-intl-normalizer": "^1.33",
+        "symfony/polyfill-php83": "^1.33",
+        "symfony/polyfill-php84": "^1.33",
+        "symfony/polyfill-php85": "^1.33"
     },
     "extra": {
         "branch-alias": {
